@@ -3,7 +3,6 @@ let playerChoice
 let computerChoice 
 let playerScore = 0;
 let computerScore = 0;
-let gameOn
 
 
 //grab the buttons 
@@ -18,21 +17,21 @@ const scoreMessage = document.getElementById("scoreMessage");
 
 
 rock.addEventListener("click", function() {
-   if (gameOn !== false) {
+   if (!isGameOver()) {
     playerChoice = "rock"
     console.log(playerChoice)
     pickForComputer()
    }
 } )
 paper.addEventListener("click", function() {
-  if (gameOn !== false) {
+  if (!isGameOver()) {
     playerChoice = "paper"
     console.log(playerChoice)
     pickForComputer()
   }
 } )
 scissors.addEventListener("click", function() {
-  if ( gameOn !== false) {
+  if ( !isGameOver()) {
     playerChoice = "scissors"
     console.log(playerChoice)
     pickForComputer()
@@ -69,17 +68,18 @@ function decideWinner() {
   scoreOfComputer.textContent = `Computer: ${computerScore}`
   if (playerScore === 5) {
     scoreMessage.textContent = "Player wins it all!"
-    gameOn = false;
-    //make the game stop, make the button functions stop!
-
   } else if (computerScore === 5) {
     scoreMessage.textContent = "Computer wins it all!"
-    gameOn = false;
-    //make the game stop
   }
 
 
 
+}
+
+//terminate game if max score reached
+
+function isGameOver() {
+  return playerScore === 5 || computerScore === 5
 }
 
 
