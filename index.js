@@ -12,7 +12,7 @@ const scissors = document.getElementById("scissors")
 //grab score divs
 const scoreOfPlayer = document.getElementById("playerScore");
 const scoreOfComputer = document.getElementById("computerScore");
-console.log(scoreOfComputer)
+const scoreMessage = document.getElementById("scoreMessage");
 
 
 rock.addEventListener("click", function() {
@@ -35,30 +35,36 @@ scissors.addEventListener("click", function() {
 //pick rock or paper or scissors fr computer
 function pickForComputer() {
     let i = Math.floor(Math.random() * 3)
-    pickForComputer = myArray[i]
+    computerChoice = myArray[i]
     console.log(computerChoice)
     decideWinner();
    
 }
 
-//compare and decide winner and add to score
+//compare, add and display score, display winner, check if anyone reached 5 
 
 function decideWinner() {
   if (playerChoice === computerChoice) {
          console.log("tie!")
-  } else if (playerChoice === "rock" && computerChoice === "paper") {
+         scoreMessage.textContent = "It's a tie!"
+  } else if (playerChoice === "rock" && computerChoice === "paper" || playerChoice === "paper" && computerChoice === "scissors" || 
+  playerChoice === "scissors" && computerChoice === "paper" || computerChoice === "rock" && playerChoice === "scissors") {
         console.log("player wins!")
-  } else if (playerChoice === "paper" && computerChoice === "scissors") {
-        console.log("player wins!")
-  } else if (playerChoice === "scissors" && computerChoice === "paper") {
-        console.log("player wins!")
-  }  else if (computerChoice === "rock" && playerChoice === "scissors") {
-        console.log("player wins!")
-  }  else if (computerChoice === "paper" && playerChoice === "rock") {
+        playerScore++
+        scoreMessage.textContent = "Player wins!"
+  }   else  {
+        computerScore++
     console.log("computer wins!")
-  }  else  {
-    console.log("computer wins!")
+    scoreMessage.textContent = "Computer wins!"
   } 
+  scoreOfPlayer.textContent = `Player: ${playerScore}`
+  scoreOfComputer.textContent = `Computer: ${computerScore}`
+  if (playerScore === 5) {
+    scoreMessage.textContent = "Player wins it all!"
+
+  } else if (computerScore === 5) {
+    scoreMessage.textContent = "Computer wins it all!"
+  }
 
 }
 
