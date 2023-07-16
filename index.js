@@ -1,48 +1,60 @@
 let myArray = ["rock","paper", "scissors"]
 let playerChoice 
-let finalChoice 
+let computerChoice 
+let playerScore = 0;
+let computerScore = 0;
 
+//grab the buttons 
 const rock = document.getElementById("rock")
 const paper = document.getElementById("paper")
 const scissors = document.getElementById("scissors")
+
+//grab score divs
+const scoreOfPlayer = document.getElementById("playerScore");
+const scoreOfComputer = document.getElementById("computerScore");
+console.log(scoreOfComputer)
+
+
 rock.addEventListener("click", function() {
     playerChoice = "rock"
     console.log(playerChoice)
-    computerChoice()
+    pickForComputer()
 } )
 paper.addEventListener("click", function() {
     playerChoice = "paper"
     console.log(playerChoice)
-    computerChoice()
+    pickForComputer()
 } )
 scissors.addEventListener("click", function() {
     playerChoice = "scissors"
     console.log(playerChoice)
-    computerChoice()
+    pickForComputer()
 } )
 
 
-
-function computerChoice() {
+//pick rock or paper or scissors fr computer
+function pickForComputer() {
     let i = Math.floor(Math.random() * 3)
-    finalChoice = myArray[i]
-    console.log(finalChoice)
+    pickForComputer = myArray[i]
+    console.log(computerChoice)
     decideWinner();
    
 }
 
+//compare and decide winner and add to score
+
 function decideWinner() {
-  if (playerChoice === finalChoice) {
+  if (playerChoice === computerChoice) {
          console.log("tie!")
-  } else if (playerChoice === "rock" && finalChoice === "paper") {
+  } else if (playerChoice === "rock" && computerChoice === "paper") {
         console.log("player wins!")
-  } else if (playerChoice === "paper" && finalChoice === "scissors") {
+  } else if (playerChoice === "paper" && computerChoice === "scissors") {
         console.log("player wins!")
-  } else if (playerChoice === "scissors" && finalChoice === "paper") {
+  } else if (playerChoice === "scissors" && computerChoice === "paper") {
         console.log("player wins!")
-  }  else if (finalChoice === "rock" && playerChoice === "scissors") {
+  }  else if (computerChoice === "rock" && playerChoice === "scissors") {
         console.log("player wins!")
-  }  else if (finalChoice === "paper" && playerChoice === "rock") {
+  }  else if (computerChoice === "paper" && playerChoice === "rock") {
     console.log("computer wins!")
   }  else  {
     console.log("computer wins!")
